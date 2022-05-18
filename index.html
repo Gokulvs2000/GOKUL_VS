@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>GOKUL VS-Portfolio</title>
 
     <!-- Bootstrap CSS -->
@@ -530,6 +532,8 @@
    
 
     <!-- Contact Section Start -->
+
+    
     <section id="contact" class="section-padding">      
       <div class="contact-form">
         <div class="container">
@@ -537,7 +541,12 @@
             <div class="col-md-6 col-lg-6 col-sm-12">
               <div class="contact-block">
                 <h2>Contact Form</h2>
-                <form id="contactForm">
+
+
+                
+
+
+                <form id="submit-form"  action="">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -553,13 +562,13 @@
                     </div>
                      <div class="col-md-12">
                       <div class="form-group">
-                        <input type="text" placeholder="Subject" id="msg_subject" class="form-control" required data-error="Please enter your subject">
+                        <input type="text" placeholder="Subject" id="msg_subject" class="form-control" name="subject" required data-error="Please enter your subject">
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group"> 
-                        <textarea class="form-control" id="message" placeholder="Your Message" rows="5" data-error="Write your message" required></textarea>
+                        <textarea  class="form-control" id="message" placeholder="Your Message" rows="5" name="message" data-error="Write your message" required></textarea>
                         <div class="help-block with-errors"></div>
                       </div>
                       <div class="submit-button">
@@ -570,8 +579,14 @@
                     </div>
                   </div>            
                 </form>
+
+
               </div>
             </div>
+ 
+
+
+
             <div class="col-md-6 col-lg-6 col-sm-12">
               <div class="footer-right-area wow fadeIn">
                 <h2>Contact Address</h2>
@@ -661,6 +676,25 @@
     <script src="assets/js/map.js"></script>
 
 
-      
+    <script>
+      $("#submit-form").submit((e)=>{
+          e.preventDefault()
+          $.ajax({
+              url:"https://script.google.com/macros/s/AKfycbyVC8yn4WBQn4GQC7TTglPScpezaToXxolHzzE/exec",
+              data:$("#submit-form").serialize(),
+              method:"post",
+              success:function (response){
+                  alert("Form submitted successfully")
+                  window.location.reload()
+                  //window.location.href="https://google.com"
+              },
+              error:function (err){
+                  alert("Something Error")
+  
+              }
+          })
+      })
+  </script>
+  
   </body>
 </html>
